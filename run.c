@@ -643,7 +643,7 @@ int main(int argc, char *argv[]) {
         // following BOS (1) token, sentencepiece decoder strips any leading whitespace (see PR #89)
         char *token_str = (token == 1 && vocab[next][0] == ' ') ? vocab[next]+1 : vocab[next];
         printf("%s", token_str);
-        if (stream) { fflush(stdout); }
+        if (stream && !(pos % stream)) { fflush(stdout); }
         token = next;
 
         // init the timer here because the first iteration can be slower
